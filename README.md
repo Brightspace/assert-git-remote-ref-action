@@ -1,6 +1,6 @@
 # assert-git-remote-ref-action
 
-Github action to assert that HEAD of current branch is at same commit as the latest of the specific remote ref.
+Github action to assert that HEAD of current branch is at the same commit as specified remote ref.
 
 ## Usage
 
