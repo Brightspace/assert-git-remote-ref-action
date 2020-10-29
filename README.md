@@ -1,6 +1,6 @@
 # assert-git-remote-ref-action
 
-Github action to assert the current branch against a remote ref.
+Github action to assert the current branch is at the latest remote ref.
 
 ## Usage
 
