@@ -12,7 +12,7 @@ jobs:
             fetch-depth: 0
 
       - name: Get checkout origin master
-        runs: git checkout master && git pull
+        run: git checkout master && git pull
 
       - name: Assert Git Remote Ref
         uses: Brightspace/assert-git-remote-ref-action@master
