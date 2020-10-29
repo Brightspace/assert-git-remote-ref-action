@@ -1,0 +1,19 @@
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Assert origin/master
+    steps:
+
+      - name: Git checkout
+        uses: Brightspace/third-party-actions@actions/checkout
+        with:
+            fetch-depth: 0
+
+      - name: Assert Git Remote Ref
+        id: hello
+        uses: Brightspace/assert-git-remote-ref-action@master
+        with:
+          remote: origin
+          ref: master
