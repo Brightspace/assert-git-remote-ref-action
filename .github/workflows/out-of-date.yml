@@ -12,7 +12,7 @@ jobs:
             fetch-depth: 0
 
       - name: Assert Git Remote Ref
-        uses: Brightspace/assert-git-remote-ref-action@${{ github.sha }}
+        uses: Brightspace/assert-git-remote-ref-action@master
         with:
           remote: origin
           ref: out-of-date

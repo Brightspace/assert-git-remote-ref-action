@@ -15,7 +15,7 @@ jobs:
         run: git checkout master && git pull --ff-only
 
       - name: Assert Git Remote Ref
-        uses: Brightspace/assert-git-remote-ref-action@${{ github.sha }}
+        uses: Brightspace/assert-git-remote-ref-action@master
         with:
           remote: origin
           ref: master
