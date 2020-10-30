@@ -34,7 +34,6 @@ jobs:
       - name: Assert Git Remote Ref
         uses: Brightspace/assert-git-remote-ref-action@master
         id: assert
-        continue-on-error: true
         with:
           remote: origin
           ref: out-of-date
