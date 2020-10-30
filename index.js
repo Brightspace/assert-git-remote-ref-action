@@ -64,7 +64,6 @@ async function run() {
 		await gitFetch( remote, ref );
 
 		const localHash = await gitShowRef( localRef );
-
 		const remoteHash = await gitShowRef( remoteRef );
 
 		if( localHash === remoteHash ) {
