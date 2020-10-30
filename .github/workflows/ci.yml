@@ -39,5 +39,5 @@ jobs:
           ref: out-of-date
 
       - name: Verify failed
-        if: ${{ steps.assert.conclusion != 'failure' )}}
+        if: steps.assert.conclusion != 'failure'
         run: exit 1
