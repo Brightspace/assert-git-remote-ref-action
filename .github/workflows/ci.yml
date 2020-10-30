@@ -24,7 +24,7 @@ jobs:
 
       - name: Verify same
         if: steps.assert.outputs.result != 'same'
-        run: echo "${{ steps.assert.outputs.result }}" && exit 1
+        run: "echo \"result: '${{ steps.assert.outputs.result }}'\" && exit 1"
 
   out-of-date:
     runs-on: ubuntu-latest
@@ -46,4 +46,4 @@ jobs:
 
       - name: Verify different
         if: steps.assert.outputs.result != 'different'
-        run: echo "${{ steps.assert.outputs.result }}" && exit 1
+        run: "echo \"result: '${{ steps.assert.outputs.result }}'\" && exit 1"
