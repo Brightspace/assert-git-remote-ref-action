@@ -34,10 +34,11 @@ jobs:
       - name: Assert Git Remote Ref
         uses: Brightspace/assert-git-remote-ref-action@master
         id: assert
+        continue-on-error: true
         with:
           remote: origin
           ref: out-of-date
 
       - name: Verify failed
-        if: steps.assert.conclusion != 'failure'
-        run: echo "${{ steps.assert.conclusion }}" && exit 1
+        if: steps.assert.outputs.result != 'different'
+        run: echo "${{ steps.assert.outputs.result }}" && exit 1
