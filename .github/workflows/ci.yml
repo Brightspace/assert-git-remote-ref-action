@@ -21,6 +21,10 @@ jobs:
           remote: origin
           ref: master
 
+      - name: Verify same
+        if: steps.assert.outputs.result != 'same'
+        run: echo "${{ steps.assert.outputs.result }}" && exit 1
+
   out-of-date:
     runs-on: ubuntu-latest
     name: Assert origin/out-of-date
@@ -39,6 +43,6 @@ jobs:
           remote: origin
           ref: out-of-date
 
-      - name: Verify failed
+      - name: Verify different
         if: steps.assert.outputs.result != 'different'
         run: echo "${{ steps.assert.outputs.result }}" && exit 1
