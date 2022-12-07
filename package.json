@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/JeffAshton/assert-git-remote-action#readme",
   "dependencies": {
-    "@actions/core": "^1.2.6"
+    "@actions/core": "^1.10.0"
   }
 }
