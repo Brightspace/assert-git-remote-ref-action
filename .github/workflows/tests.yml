@@ -4,7 +4,7 @@ on: [push]
 jobs:
   master:
     runs-on: ubuntu-latest
-    name: Assert origin/master
+    name: Assert origin/<currentRef>
     steps:
 
       - name: Git checkout
@@ -12,15 +12,12 @@ jobs:
         with:
             fetch-depth: 0
 
-      - name: Get checkout origin master
-        run: git checkout master && git pull --ff-only
-
       - name: Assert Git Remote Ref
-        uses: Brightspace/assert-git-remote-ref-action@master
+        uses: ./
         id: assert
         with:
           remote: origin
-          ref: master
+          ref: ${{ github.ref_name }}
 
       - name: Verify same
         if: steps.assert.outputs.result != 'same'
@@ -37,7 +34,7 @@ jobs:
             fetch-depth: 0
 
       - name: Assert Git Remote Ref
-        uses: Brightspace/assert-git-remote-ref-action@master
+        uses: ./
         id: assert
         continue-on-error: true
         with:

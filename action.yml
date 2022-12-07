@@ -12,5 +12,5 @@ outputs:
   result:
     description: 'The result of the check'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'index.js'
