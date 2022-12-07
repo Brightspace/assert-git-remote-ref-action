@@ -17,7 +17,7 @@ jobs:
         id: assert
         with:
           remote: origin
-          ref: ${{ github.action_ref }}
+          ref: ${{ github.ref }}
 
       - name: Verify same
         if: steps.assert.outputs.result != 'same'
