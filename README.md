@@ -6,7 +6,7 @@ Github action to assert that HEAD (of current branch) is at the same commit as t
 
 ```
     - name: Assert Git Remote Ref
-      uses: Brightspace/assert-git-remote-ref-action@master
+      uses: Brightspace/assert-git-remote-ref-action@main
       with:
         remote: origin
         ref: main
