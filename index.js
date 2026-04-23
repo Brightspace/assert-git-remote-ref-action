@@ -1,10 +1,13 @@
-const child_process = require( 'child_process' );
-const core = require('@actions/core' );
-const { EOL } = require( 'os' );
-const util = require( 'util' );
+// @ts-check
+import * as child_process from 'child_process';
+import * as core from '@actions/core';
+import * as util from 'util';
 
 const execFile = util.promisify(child_process.execFile);
 
+/**
+ * @param {{ stdout?: string, stderr?: string }} output
+ */
 function writeProcessOutput( output ) {
 
 	const stderr = output.stderr;
@@ -18,6 +21,10 @@ function writeProcessOutput( output ) {
 	}
 }
 
+/**
+ * @param {string} remote
+ * @param {string} ref
+ */
 async function gitFetch( remote, ref ) {
 
 	console.info( `> git fetch --verbose ${remote} ${ref}` );
@@ -32,11 +39,14 @@ async function gitFetch( remote, ref ) {
 	writeProcessOutput( output );
 }
 
+/**
+ * @param {string} ref
+ */
 async function gitShowRef( ref ) {
 
 	console.info( `> git show-ref --hash --verify ${ref}` );
-	
-	const output = await execFile( 'git', [ 
+
+	const output = await execFile( 'git', [
 		'show-ref',
 		'--hash',
 		'--verify',
@@ -57,7 +67,7 @@ async function run() {
 	try {
 		const remote = core.getInput( 'remote' );
 		const ref = core.getInput( 'ref' );
-		
+
 		const localRef = 'HEAD';
 		const remoteRef = `refs/remotes/${remote}/${ref}`;
 
@@ -76,10 +86,15 @@ async function run() {
 		}
 
 	} catch( error ) {
+		if( error ) {
+			writeProcessOutput( error );
+		}
 
-		writeProcessOutput( error );
-
-		core.setFailed( error.message );
+		if ( error instanceof Error || typeof error === "string" ) {
+			core.setFailed( error );
+		} else {
+			core.setFailed( String( error ) );
+		}
 	}
 }
 
